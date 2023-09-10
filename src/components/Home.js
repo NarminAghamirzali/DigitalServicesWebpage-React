@@ -1,49 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState} from 'react';
-import Carousel from "./Carousel";
+import { useRef, useState} from 'react';
 import React from "react";
 import Slider from "react-slick";
-
-function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, 
-            display: "block",
-            background: "rgba(255, 100, 0, 0.288)",
-            left: "1379px", 
-            right: "100px",
-            top: "464px", 
-            zIndex: "10",
-            height: "44px",
-            width: "44px",
-            borderRadius: "50%"
-        }}
-        onClick={onClick}
-      />
-    );
-  }
-  
-function SamplePrevArrow(props) {
-const { className, style, onClick } = props;
-return (
-    <div
-    className={className}
-    style={{ ...style, 
-        display: "block", 
-        background: "rgba(255, 0, 0, 0.288)", 
-        left: "1283px", 
-        top: "464px", 
-        zIndex: "10",
-        height: "44px",
-        width: "44px",
-        borderRadius: "50%"
-    }}
-    onClick={onClick}
-    />
-);
-}
 
 function SampleNextArrowCard(props) {
     const { className, style, onClick } = props;
@@ -90,8 +48,7 @@ return (
     </div>
 );
 }
- 
- 
+
 const Home = () => {
     const [ slides, setSlides] = useState([
         {
@@ -142,15 +99,15 @@ const Home = () => {
         infinite: true,
         speed: 1000,
         slidesToShow: 1,
-        slidesToScroll: 1,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />
+        slidesToScroll: 1
     };
 
     const cardSettings = {
         dots: false,
         infinite: true,
         speed: 1000,
+        autoplay: true,
+        autoplaySpeed: 10000,
         slidesToShow: 5,
         slidesToScroll: 1,
         initialSlide: 0,
@@ -185,12 +142,18 @@ const Home = () => {
         ]
     };
 
+    const sliderRef = useRef(null);
+
+    setTimeout(() => {
+        console.log(sliderRef)
+    }, 3000);
+
   return (
     <>
         <section id="carousel">
-            {/* <div className="carousel-container">
+            <div className="carousel-container">
                 <div className="slides">
-                    <Slider {...settings}>
+                    <Slider {...settings} ref={sliderRef}>
                         <div className="slide slide-1">
                             <div className="slide-content">
                                 <div className="slide-left">
@@ -202,11 +165,11 @@ const Home = () => {
                                     </div>
                                 </div>
                                 <div className="slide-controls">
-                                    <div className="next-prev-button">
+                                    <div className="next-prev-button" onClick={() => sliderRef?.current?.slickPrev()}>
                                         <i className='bx bx-chevron-left'></i>
                                     </div>
                                     <span className="slide-counter">1/6</span>
-                                    <div className="next-prev-button">
+                                    <div className="next-prev-button" onClick={() => sliderRef?.current?.slickNext()}>
                                         <i className='bx bx-chevron-right'></i>
                                     </div>
                                 </div>
@@ -228,11 +191,11 @@ const Home = () => {
                                     </span>
                                 </div>
                                 <div className="slide-controls">
-                                    <div className="next-prev-button">
+                                    <div className="next-prev-button" onClick={() => sliderRef?.current?.slickPrev()}>
                                         <i className='bx bx-chevron-left'></i>
                                     </div>
                                     <span className="slide-counter">2/6</span>
-                                    <div className="next-prev-button">
+                                    <div className="next-prev-button" onClick={() => sliderRef?.current?.slickNext()}>
                                         <i className='bx bx-chevron-right'></i>
                                     </div>
                                 </div>
@@ -254,11 +217,11 @@ const Home = () => {
                                     </span>
                                 </div>
                                 <div className="slide-controls">
-                                    <div className="next-prev-button">
+                                    <div className="next-prev-button" onClick={() => sliderRef?.current?.slickPrev()}>
                                         <i className='bx bx-chevron-left'></i>
                                     </div>
                                     <span className="slide-counter">3/6</span>
-                                    <div className="next-prev-button">
+                                    <div className="next-prev-button" onClick={() => sliderRef?.current?.slickNext()}>
                                         <i className='bx bx-chevron-right'></i>
                                     </div>
                                 </div>
@@ -280,11 +243,11 @@ const Home = () => {
                                     </span>
                                 </div>
                                 <div className="slide-controls">
-                                    <div className="next-prev-button">
+                                    <div className="next-prev-button" onClick={() => sliderRef?.current?.slickPrev()}>
                                         <i className='bx bx-chevron-left'></i>
                                     </div>
                                     <span className="slide-counter">4/6</span>
-                                    <div className="next-prev-button">
+                                    <div className="next-prev-button" onClick={() => sliderRef?.current?.slickNext()}>
                                         <i className='bx bx-chevron-right'></i>
                                     </div>
                                 </div>
@@ -306,11 +269,11 @@ const Home = () => {
                                     </span>
                                 </div>
                                 <div className="slide-controls">
-                                    <div className="next-prev-button">
+                                    <div className="next-prev-button" onClick={() => sliderRef?.current?.slickPrev()}>
                                         <i className='bx bx-chevron-left'></i>
                                     </div>
                                     <span className="slide-counter">5/6</span>
-                                    <div className="next-prev-button">
+                                    <div className="next-prev-button" onClick={() => sliderRef?.current?.slickNext()}>
                                         <i className='bx bx-chevron-right'></i>
                                     </div>
                                 </div>
@@ -332,21 +295,19 @@ const Home = () => {
                                     </span>
                                 </div>
                                 <div className="slide-controls">
-                                    <div className="next-prev-button">
+                                    <div className="next-prev-button" onClick={() => sliderRef?.current?.slickPrev()}>
                                         <i className='bx bx-chevron-left'></i>
                                     </div>
                                     <span className="slide-counter">6/6</span>
-                                    <div className="next-prev-button">
+                                    <div className="next-prev-button" onClick={() => sliderRef?.current?.slickNext()}>
                                         <i className='bx bx-chevron-right'></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </Slider>
-                    
                 </div>
-            </div> */}
-            < Carousel slides={slides}/>
+            </div>
         </section>
         <section id="directions">
             <div className="directions">
