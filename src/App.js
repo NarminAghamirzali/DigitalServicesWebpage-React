@@ -6,6 +6,7 @@ import './css/style.css';
 import Starting from './components/Starting';
 import Header from './components/Header';
 import Main from './components/Main';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Starting />
         <Header />
         <Main />
+        <Footer />
     </>
   );
 }

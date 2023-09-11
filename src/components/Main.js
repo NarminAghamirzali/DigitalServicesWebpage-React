@@ -1,6 +1,4 @@
 import React from 'react';
-import Footer from './Footer';
-
 import Home from './Home';
 import About from './About';
 import FAQ from './FAQ';
@@ -15,7 +13,6 @@ const Main = () => {
           <Route path='/about' element={<About />} />
           <Route path='/faq' element={<FAQ />} />
         </Routes>
-      < Footer />
     </main>
   )
 }
